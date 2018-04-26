@@ -1,0 +1,62 @@
+
+    <main class="container">
+
+        <div class="text-center">
+            <img src="images/star-wars.png" alt="">
+        </div>
+
+        <br>
+
+        <section id="content">
+
+            <p class="text-center">
+                <button class="btn btn-primary" type="button">      
+                    Tempo de jogo <span class="badge">{{vm.timeRemaining | secondsToDateTime | date:'mm:ss'}}</span>
+                </button>
+            </p>
+
+            <div class="clearfix"></div>
+
+            <br>
+
+            <div class="progress" ng-show="vm.loading">
+                <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                    <span class="sr-only">Loading ...</span>
+                </div>
+            </div>
+
+            <div ng-repeat="item in vm.items" ng-show="!vm.loading" class="col-sm-6 col-md-4">
+
+                <div class="thumbnail">
+
+                    <div class="caption text-center">
+                                                
+                        <img src="images/chars/{{item.name}}.png" alt="" style="max-height: 200px">
+
+                        <br><br>
+
+                        <form class="form-inline">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="nome" placeholder="Digite o Nome" ng-model="item.value">
+                                </div>
+                            </div>
+                            <button type="button" class="btn btn-primary" ng-click="vm.validate(item, $index)">{{ item.value && item.value.length > 2 ? 'Validar' : 'Detalhes ...' }}</button>
+                        </form>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="clearfix"></div>
+
+            <nav>
+                <ul class="pager">
+                    <li><button class="btn btn-default"  ng-click="vm.prev()" ng-disabled="!vm.paginateParams.previous || vm.loading">Anterior</button></li>
+                    <li><button class="btn btn-default" ng-click="vm.next()" ng-disabled="!vm.paginateParams.next || vm.loading">Próxima</button></li>
+                </ul>
+            </nav>
+            
+        </section>
+    </main>

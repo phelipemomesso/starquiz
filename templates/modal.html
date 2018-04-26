@@ -1,0 +1,47 @@
+<div class="modal-header">
+    <h3 class="modal-title" id="modal-title">Detalhes</h3>
+</div>
+
+<div class="modal-body" id="modal-body">
+
+    <b>Hair:</b> {{ vm.character.hair_color }} <br>
+    <b>Gender:</b> {{ vm.character.gender }} <br>
+    <b>Height:</b> {{ vm.character.height }}
+
+
+    <h3>Veículos</h3>
+
+    <div class="progress" ng-show="vm.loadingVehicles">
+        <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"
+            style="width: 100%">
+            <span class="sr-only">loading Vehicles ...</span>
+        </div>
+    </div>
+
+    <ul>
+        <li ng-if="!vm.character.vehicles.length && !vm.loadingVehicles">Não possui veiculos</li>
+        <li ng-repeat="vehicle in vm.character.vehicles">
+            {{ vehicle.name }}
+        </li>
+    </ul>
+
+    <h3>Filmes</h3>
+
+    <div class="progress" ng-show="vm.loadingFilms">
+        <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"
+            style="width: 100%">
+            <span class="sr-only">loadingFilms ...</span>
+        </div>
+    </div>
+
+    <ul>
+        <li ng-if="!vm.character.films.length && !vm.loadingFilms">Não possui Filmes</li>
+        <li ng-repeat="film in vm.character.films">
+            {{ film.title }}
+        </li>
+    </ul>
+</div>
+
+<div class="modal-footer">
+    <button class="btn btn-primary" type="button" ng-click="vm.modalClose()">OK</button>
+</div>
